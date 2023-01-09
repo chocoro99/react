@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <body></body>
+  <body>
+    <div id="root"></div>
+  </body>
   <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script>
@@ -9,11 +11,26 @@
       "span",
       {
         onMouseEnter: () => console.log("mouse enter"),
+        style: {
+          color: "red",
+        },
       },
       "Total clicks: 0"
     );
+
+    let number = 0;
+    const button = React.createElement(
+      "button",
+      {
+        onClick: () => {
+          number += 1;
+          console.log(number);
+        },
+      },
+      "Click"
+    );
     // button 추가해보기! onClick을 이용하여 console.log에서 숫자가 하나씩 증가하게 만들기
-    const container = React.createElement("div", null, [span]);
+    const container = React.createElement("div", null, [span], [button]);
     ReactDOM.render(container, root);
   </script>
 </html>
