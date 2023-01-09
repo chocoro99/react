@@ -7,23 +7,44 @@
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const root = document.getElementById("root");
     const App = () => {
+      const [number, setNumber] = React.useState("");
+      const change = (e) => {
+        let value = e.target.value;
+        setNumber(value);
+      };
+      const reset = () => {
+        setNumber("");
+      };
+
       return (
-        <div>
+        <div className="container">
           <h1>Super Converter</h1>
           <div>
             <label htmlFor="minutes">Minutes</label>
-            <input id="minutes" placeholder="Minutes" type="number" />
+            <input
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              onChange={change}
+              value={number}
+            />
           </div>
           <div>
             <label htmlFor="hours">Hours</label>
-            <input id="hours" placeholder="Hours" type="number" disabled />
+            <input
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              disabled
+              value={number === "" ? "" : Math.floor(number / 60)}
+            />
           </div>
-          <button>Reset</button>
+          <button onClick={reset}>Reset</button>
         </div>
       );
     };
+    const root = document.getElementById("root");
     ReactDOM.render(<App />, root);
   </script>
 </html>
