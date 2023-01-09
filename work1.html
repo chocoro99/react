@@ -8,24 +8,37 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    const Span = (
-      <span onMouseEnter={() => console.log("mouse enter")}>
-        Total clicks: 0
-      </span>
-    );
 
-    let number = 0;
-    const button = React.createElement(
-      "button",
-      {
-        onClick: () => {
-          number += 1;
-          console.log(number);
-        },
-      },
-      "Click"
-    );
-    const container = React.createElement("div", null, [Span, button]);
-    ReactDOM.render(container, root);
+    // const Span = () => (
+    //   <span onMouseEnter={() => console.log("mouse enter")}>
+    //     Total clicks: 0
+    //   </span>
+    // );
+    // const Button = () => (
+    //   <button
+    //     onClick={() => {
+    //       number += 1;
+    //       console.log(number);
+    //     }}
+    //   >
+    //     Click
+    //   </button>
+    // );
+
+    const Container = () => {
+      const [number, setNumber] = React.useState(0);
+      const btn = () => {
+        // setNumber(number + 1);
+        setNumber((current) => current + 1);
+      };
+      return (
+        <div>
+          <span>Total clicks: {number}</span>
+          <button onClick={btn}>Click me</button>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<Container />, root);
   </script>
 </html>
