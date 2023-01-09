@@ -1,8 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <body>
-    <span>Total clicks: 0</span>
-    <button id="btn">Click me</button>
+    <span>Total clicks: <span id="number">0</span></span>
+    <button id="btn" onclick="count()">Click me</button>
   </body>
-  <script></script>
+  <script>
+    function count() {
+      const total = document.getElementById("number");
+      total.innerHTML = parseInt(total.innerHTML) + 1;
+    }
+  </script>
 </html>
