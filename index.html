@@ -8,7 +8,6 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    let number = 0;
 
     // const Span = () => (
     //   <span onMouseEnter={() => console.log("mouse enter")}>
@@ -26,18 +25,19 @@
     //   </button>
     // );
 
-    const btn = () => {
-      number += 1;
-      ReactDOM.render(<Container />, root);
-      console.log(number);
+    const Container = () => {
+      const [number, setNumber] = React.useState(0);
+      const btn = () => {
+        // setNumber(number + 1);
+        setNumber((current) => current + 1);
+      };
+      return (
+        <div>
+          <span>Total clicks: {number}</span>
+          <button onClick={btn}>Click me</button>
+        </div>
+      );
     };
-
-    const Container = () => (
-      <div>
-        <span>Total clicks: {number}</span>
-        <button onClick={btn}>Click me</button>
-      </div>
-    );
 
     ReactDOM.render(<Container />, root);
   </script>
