@@ -3,29 +3,27 @@
   <body>
     <div id="root"></div>
   </body>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    const Span = (
-      <span onMouseEnter={() => console.log("mouse enter")}>
-        Total clicks: 0
-      </span>
-    );
-
-    let number = 0;
-    const button = React.createElement(
-      "button",
-      {
-        onClick: () => {
-          number += 1;
-          console.log(number);
-        },
-      },
-      "Click"
-    );
-    const container = React.createElement("div", null, [Span, button]);
-    ReactDOM.render(container, root);
+    const App = () => {
+      return (
+        <div>
+          <h1>Super Converter</h1>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input id="minutes" placeholder="Minutes" type="number" />
+          </div>
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input id="hours" placeholder="Hours" type="number" disabled />
+          </div>
+          <button>Reset</button>
+        </div>
+      );
+    };
+    ReactDOM.render(<App />, root);
   </script>
 </html>
