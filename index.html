@@ -9,12 +9,17 @@
   <script type="text/babel">
     const App = () => {
       const [number, setNumber] = React.useState("");
+      const [bool, turn] = React.useState(true);
       const change = (e) => {
         let value = e.target.value;
         setNumber(value);
       };
       const reset = () => {
         setNumber("");
+      };
+      const invert = () => {
+        turn(!bool);
+        reset();
       };
 
       return (
@@ -26,8 +31,9 @@
               id="minutes"
               placeholder="Minutes"
               type="number"
+              disabled={!bool}
               onChange={change}
-              value={number}
+              value={bool ? number : Math.floor(number * 60)}
             />
           </div>
           <div>
@@ -36,12 +42,13 @@
               id="hours"
               placeholder="Hours"
               type="number"
-              disabled
-              value={number === "" ? "" : Math.floor(number / 60)}
+              disabled={bool}
+              onChange={change}
+              value={bool ? Math.floor(number / 60) : number}
             />
           </div>
           <button onClick={reset}>Reset</button>
-          <button>Invert</button>
+          <button onClick={invert}>{bool ? "Invert" : "Turn Back"}</button>
         </div>
       );
     };
