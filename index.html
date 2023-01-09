@@ -3,42 +3,27 @@
   <body>
     <div id="root"></div>
   </body>
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-
-    // const Span = () => (
-    //   <span onMouseEnter={() => console.log("mouse enter")}>
-    //     Total clicks: 0
-    //   </span>
-    // );
-    // const Button = () => (
-    //   <button
-    //     onClick={() => {
-    //       number += 1;
-    //       console.log(number);
-    //     }}
-    //   >
-    //     Click
-    //   </button>
-    // );
-
-    const Container = () => {
-      const [number, setNumber] = React.useState(0);
-      const btn = () => {
-        // setNumber(number + 1);
-        setNumber((current) => current + 1);
-      };
+    const App = () => {
       return (
         <div>
-          <span>Total clicks: {number}</span>
-          <button onClick={btn}>Click me</button>
+          <h1>Super Converter</h1>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input id="minutes" placeholder="Minutes" type="number" />
+          </div>
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input id="hours" placeholder="Hours" type="number" disabled />
+          </div>
+          <button>Reset</button>
         </div>
       );
     };
-
-    ReactDOM.render(<Container />, root);
+    ReactDOM.render(<App />, root);
   </script>
 </html>
