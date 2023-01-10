@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const App = () => {
+      const [number, setNumber] = React.useState("");
+      const [bool, turn] = React.useState(true);
+      const change = (e) => {
+        let value = e.target.value;
+        setNumber(value);
+      };
+      const reset = () => {
+        setNumber("");
+      };
+      const invert = () => {
+        turn(!bool);
+        reset();
+      };
+
+      return (
+        <div className="container">
+          <h1>Super Converter</h1>
+          <div>
+            <label htmlFor="minutes">Minutes</label>
+            <input
+              id="minutes"
+              placeholder="Minutes"
+              type="number"
+              disabled={!bool}
+              onChange={change}
+              value={bool ? number : Math.floor(number * 60)}
+            />
+          </div>
+          <div>
+            <label htmlFor="hours">Hours</label>
+            <input
+              id="hours"
+              placeholder="Hours"
+              type="number"
+              disabled={bool}
+              onChange={change}
+              value={bool ? Math.floor(number / 60) : number}
+            />
+          </div>
+          <button onClick={reset}>Reset</button>
+          <button onClick={invert}>{bool ? "Invert" : "Turn Back"}</button>
+        </div>
+      );
+    };
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
