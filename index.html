@@ -5,28 +5,41 @@
   </body>
   <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prop-types/15.7.2/prop-types.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    const Btn = ({ text }) => {
+    const Btn = ({ text, backgroundColor, click }) => {
+      console.log("rendering~~");
       return (
         <button
           style={{
-            backgroundColor: "tomato",
+            backgroundColor,
             color: "white",
             padding: "10px 20px",
             border: 0,
             borderRadius: 10,
           }}
+          onClick={click}
         >
           {text}
         </button>
       );
     };
+    Btn.propTypes = {
+      text: PropTypes.string.isRequired,
+      backgroundColor: PropTypes.string,
+      click: PropTypes.func,
+    };
+    const MemoBtn = React.memo(Btn);
     const App = () => {
+      const [text, setText] = React.useState("Save Changes");
+      const revert = (e) => {
+        setText("Revert Changes");
+      };
       return (
         <div>
-          <Btn text="Save Changes" />
-          <Btn text="Confirm" />
+          <MemoBtn text={text} backgroundColor="tomato" click={revert} />
+          <MemoBtn text="Confirm" backgroundColor="skyblue" />
         </div>
       );
     };
